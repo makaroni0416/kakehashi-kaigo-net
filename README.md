@@ -1,24 +1,44 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+| Column                     | Type     | Options                   |
+| -------------------------  | -------  | -----------------------   |
+| name                       | string   | null: false               |
+| encrypted_password         | string   | null: false               |
+| email                      | string   | null: false, unique: true |
+| birthday                   | date     | null: false               |
+| family_name                | string   | null: false               |
+| first_name                 | string   | null: false               |
+| family_name_kana           | string   | null: false               |
+| first_name_kana            | string   | null: false               |
+| postcode                   | string   | null: false               |
+| phone_number               | string   | null: false               |
 
-* Ruby version
+### Association
+- has_many :date
+- has_many :messages
 
-* System dependencies
+## dates テーブル
+| Column                     | Type     | Options                   |
+| -------------------------  | -------  | -----------------------   |
+| fleetime                   | datetime | null: false               |
+| prefecture_id              | integer  | null: false               |
+| city                       | string   | null: false, unique: true |
+| block                      | string   |  |
 
-* Configuration
+### Association
+- belongs_to :user
 
-* Database creation
+## messages テーブル
+| Column                     | Type     | Options                   |
+| -------------------------  | -------  | -----------------------   |
+| genres                     | integer  | null: false               |
+| content                    | string   | null: false               |
+| user                       | references   | null: false, unique: true |
 
-* Database initialization
+### Association
+- belongs_to :user
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
-
-* ...
